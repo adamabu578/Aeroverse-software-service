@@ -3,11 +3,12 @@ import { Input } from "@/components/ui/input"
 import { Laptop, Smartphone, ShoppingCart, Search, Menu } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import VideoUploadSection from "@/components/Video-Upload"
+// import VideoUploadSection from "@/components/VideoSection"
 import ProductCard from "@/components/Product-Card"
 import CategoryCard from "@/components/Category"
 import logo from "@/public/assets/banitech.png" // Adjust the path to your logo image
 import ArticleSection from "@/components/article-management"
+import { VideoSection } from "@/components/VideoSection"
 
 
 export default function Home() {
@@ -163,7 +164,7 @@ export default function Home() {
         </section>
 
         {/* Video Upload Section */}
-        <section id="videos" className=" py-12 md:py-24 lg:py-32">
+        {/* <section id="videos" className=" py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center ">
               <div className="space-y-2">
@@ -173,11 +174,39 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="mt-8">
-              <VideoUploadSection />
-            </div>
+            <div className="mt-8"> */}
+              {/* <VideoUploadSection /> */}
+            {/* </div>
           </div>
-        </section>
+        </section> */}
+
+
+      <main className="flex min-h-screen flex-col items-center justify-between">
+            {/* Self-hosted video example */}
+            <VideoSection
+              title="Product Demo"
+              description="Watch our product demo to see how our solution can help your business."
+              videoSrc="/assets/banitechvideo.mp4"
+              videoType="self-hosted"
+              posterImage="/assets/hplapi.jpg"
+            />
+
+            {/* YouTube video example */}
+            {/* <VideoSection
+              title="Tutorial"
+              description="Learn how to get started with our platform in this step-by-step tutorial."
+              videoSrc="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              videoType="youtube"
+            /> */}
+
+            <VideoSection
+              title="Product Demo"
+              description="Watch our product demo to see how our solution can help your business."
+              videoSrc="/assets/banitech.mp4"
+              videoType="self-hosted"
+              posterImage="/assets/mackbook1.jpg"
+            />
+          </main>
 
         {/* New Article Section */}
       <ArticleSection />
