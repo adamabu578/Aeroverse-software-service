@@ -7,6 +7,7 @@ import VideoUploadSection from "@/components/Video-Upload"
 import ProductCard from "@/components/Product-Card"
 import CategoryCard from "@/components/Category"
 import logo from "@/public/assets/banitech.png" // Adjust the path to your logo image
+import ArticleSection from "@/components/article-management"
 
 
 export default function Home() {
@@ -177,6 +178,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* New Article Section */}
+      <ArticleSection />
 
         {/* Testimonials Section */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
