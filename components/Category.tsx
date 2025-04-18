@@ -15,20 +15,29 @@ interface CategoryCardProps {
 
 export default function CategoryCard({ id, title, description, icon, image }: CategoryCardProps) {
   return (
-    <Card className="overflow-hidden w-full  md:w-[400px] lg:w-[500px]">
-      <div className="grid md:grid-cols-2">
-        <div className="relative aspect-square md:aspect-auto">
-          <Image src={image || "/placeholder.svg"} alt={title} fill className="object-cover" />
-        </div>
-        <CardContent className="flex flex-col justify-center p-6">
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-muted">{icon}</div>
-          <h3 className="text-2xl font-bold">{title}</h3>
-          <p className="mt-2 text-muted-foreground">{description}</p>
-          <Link href={`#${id}`} className="mt-6">
-            <Button>Browse {title}</Button>
-          </Link>
-        </CardContent>
+   
+    <div className="flex flex-wrap justify-center gap-4">
+  <Card className="flex lg:w-[450px] lg:h-[300px]  flex-col md:flex-col md:h-[400px] h-[250px]">
+    <div className="relative w-full md:w-1/2 h-48 md:h-auto">
+      <Image src={image || "/placeholder.svg"} alt={title} fill className="w-[200px]" />
+    </div>
+    <CardContent className="flex flex-col justify-center p-4">
+      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-muted">
+        {icon}
       </div>
-    </Card>
+      <h3 className="text-xl font-bold">{title}</h3>
+      <p className="mt-1 text-muted-foreground text-sm">{description}</p>
+      <Link href={`#${id}`} className="mt-4">
+        <Button size="sm">Browse {title}</Button>
+      </Link>
+    </CardContent>
+  </Card>
+
+  {/* Duplicate card here if you have more than one */}
+</div>
+
+
+
+
   )
 }

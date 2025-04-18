@@ -78,7 +78,7 @@ export default function Home() {
                 </div>
               </div>
               <Image
-                src="/placeholder.svg?height=550&width=550"
+                src="/assets/man-smilin.jpg"
                 width={550}
                 height={550}
                 alt="Latest tech products"
@@ -99,13 +99,13 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mt-8">
+            <div className="flex flex-wrap justify-center gap-8 mt-8">
               <CategoryCard
                 id="laptops"
                 title="Laptops"
                 description="Powerful laptops for work and play"
                 icon={<Laptop className="h-8 w-8" />}
-                image="/assets/lapi.png"
+                image="/assets/lapi.png" 
               />
               <CategoryCard
                 id="accessories"
@@ -129,29 +129,29 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
+            <div className="flex  justify-center gap-8 mt-8">
               <ProductCard
                 name="UltraBook Pro"
                 category="Laptop"
-                price={1299.99}
+                // price={1299.99}
                 image="/assets/hp.png"
               />
               <ProductCard
                 name="PowerBook Air"
                 category="Laptop"
-                price={999.99}
+                // price={999.99}
                 image="/assets/lapi5.png"
               />
               <ProductCard
                 name="Mobile-phone"
                 category="Mobile-phone"
-                price={89.99}
+                // price={89.99}
                 image="/assets/iphone-tech.png"
               />
               <ProductCard
                 name="Mobile-phone"
                 category="Mobile-phone"
-                price={49.99}
+                // price={49.99}
                 image="/assets/iphone-tech1.png"
               />
             </div>
