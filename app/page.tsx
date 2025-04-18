@@ -9,6 +9,7 @@ import CategoryCard from "@/components/Category"
 import logo from "@/public/assets/banitech.png" // Adjust the path to your logo image
 import ArticleSection from "@/components/article-management"
 import { VideoSection } from "@/components/VideoSection"
+import WhatsAppLink from "@/components/whatsapp-link"
 
 
 export default function Home() {
@@ -349,7 +350,8 @@ export default function Home() {
               <ul className="space-y-2 text-sm">
                 <li className="text-muted-foreground">Banex plaza Abuja FA76</li>
                 <li className="text-muted-foreground">support@banitechtoks.com</li>
-                <li className="text-muted-foreground">+234802557358</li>
+                <li className="text-muted-foreground">+2348082557358</li>
+                <WhatsAppLink />
               </ul>
             </div>
           </div>
