@@ -16,12 +16,40 @@ interface CategoryCardProps {
 export default function CategoryCard({ id, title, description, icon, image }: CategoryCardProps) {
   return (
    
-    <div className="flex flex-wrap justify-center gap-4">
-  <Card className="flex lg:w-[450px] lg:h-[300px]  flex-col md:flex-col md:h-[400px] h-[250px]">
-    <div className="relative w-full md:w-1/2 h-48 md:h-auto">
-      <Image src={image || "/placeholder.svg"} alt={title} fill className="w-[200px]" />
+//     <div className="flex  justify-center gap-4">
+//   <Card className="flex lg:w-[450px] lg:h-[300px] max-w-full flex-col md:flex-col md:h-[400px] h-[250px]">
+//     <div className="relative w-full md:w-1/2 h-48 md:h-auto">
+//       <Image src={image || "/placeholder.svg"} alt={title} fill className="w-[200px]" />
+//     </div>
+//     <CardContent className="flex flex-col justify-center p-4">
+//       <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-muted">
+//         {icon}
+//       </div>
+//       <h3 className="text-xl font-bold">{title}</h3>
+//       <p className="mt-1 text-muted-foreground text-sm">{description}</p>
+//       <Link href={`#${id}`} className="mt-4">
+//         <Button size="sm">Browse {title}</Button>
+//       </Link>
+//     </CardContent>
+//   </Card>
+
+//   {/* Duplicate card here if you have more than one */}
+// </div>
+<div className="flex justify-center gap-4">
+  <Card className="flex flex-col md:flex-row lg:w-[450px] lg:h-[300px] max-w-full h-auto overflow-hidden">
+    
+    {/* Image on the Left */}
+    <div className="relative w-full md:w-1/2 h-48 md:h-full">
+      <Image
+        src={image || "/placeholder.svg"}
+        alt={title}
+        fill
+        className="object-cover"
+      />
     </div>
-    <CardContent className="flex flex-col justify-center p-4">
+
+    {/* Content on the Right */}
+    <CardContent className="flex flex-col justify-center p-4 md:w-1/2">
       <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-muted">
         {icon}
       </div>
@@ -31,11 +59,9 @@ export default function CategoryCard({ id, title, description, icon, image }: Ca
         <Button size="sm">Browse {title}</Button>
       </Link>
     </CardContent>
+
   </Card>
-
-  {/* Duplicate card here if you have more than one */}
 </div>
-
 
 
 
