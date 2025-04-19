@@ -210,7 +210,7 @@ export default function Home() {
           </main>
 
         {/* New Article Section */}
-      <ArticleSection />
+      {/* <ArticleSection /> */}
 
         {/* Testimonials Section */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
