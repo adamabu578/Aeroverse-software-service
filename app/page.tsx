@@ -1,12 +1,27 @@
-
 "use client"
-import { useState, useEffect } from 'react';
-import { Download, ChevronRight, Menu, X } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Download, ChevronRight, Menu, X, Send } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 export default function AppLaunchPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: ''
+  });
+  const [formStatus, setFormStatus] = useState<{
+    submitting: boolean;
+    submitted: boolean;
+    error: string | null;
+  }>({
+    submitting: false,
+    submitted: false,
+    error: null
+  });
+  
+  const formRef = useRef<HTMLFormElement | null>(null);
   
   // Handle scroll effect for navbar
   useEffect(() => {
@@ -22,6 +37,46 @@ export default function AppLaunchPage() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [scrolled]);
+  
+  // Handle form input changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  
+  // Handle form submission
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus({ submitting: true, submitted: false, error: null });
+    
+    // Replace these with your actual EmailJS credentials
+    const serviceId = 'service_n5ev2m5';
+    const templateId = 'template_zw92h1a';
+    const publicKey = 'e9Tht_Br8bnu563wU';
+    
+    if (formRef.current) {
+      emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
+        .then((result) => {
+          setFormStatus({ submitting: false, submitted: true, error: null });
+          setFormData({ name: '', email: '' });
+          // After successful submission, you might want to redirect to download
+          setTimeout(() => {
+            const downloadButton = document.getElementById('download-button');
+            if (downloadButton) {
+              downloadButton.click();
+            }
+          }, 1500);
+        })
+        .catch((error) => {
+          setFormStatus({ submitting: false, submitted: false, error: error.text });
+        });
+    } else {
+      setFormStatus({ submitting: false, submitted: false, error: "Form reference is null" });
+    }
+  };
   
   // App details - customize these values
   const appName = "smatpay";
@@ -102,34 +157,36 @@ export default function AppLaunchPage() {
         </div>
         
         {/* Mobile menu */}
-        {mobileMenuOpen && (
-          <motion.div 
-            className="sm:hidden bg-white bg-opacity-95 backdrop-blur-md"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="pt-2 pb-3 space-y-1">
-              <motion.a 
-                href="#features" 
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2 text-base font-medium text-gray-600 hover:text-blue-600"
-                whileHover={{ x: 5 }}
-              >
-                Features
-              </motion.a>
-              <motion.a 
-                href="#download" 
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2 text-base font-medium text-gray-600 hover:text-blue-600"
-                whileHover={{ x: 5 }}
-              >
-                Download
-              </motion.a>
-            </div>
-          </motion.div>
-        )}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div 
+              className="sm:hidden bg-white bg-opacity-95 backdrop-blur-md"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="pt-2 pb-3 space-y-1">
+                <motion.a 
+                  href="#features" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-4 py-2 text-base font-medium text-gray-600 hover:text-blue-600"
+                  whileHover={{ x: 5 }}
+                >
+                  Features
+                </motion.a>
+                <motion.a 
+                  href="#download" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-4 py-2 text-base font-medium text-gray-600 hover:text-blue-600"
+                  whileHover={{ x: 5 }}
+                >
+                  Download
+                </motion.a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
       {/* Hero Section */}
@@ -270,7 +327,7 @@ export default function AppLaunchPage() {
         </div>
       </div>
 
-      {/* Download Section */}
+      {/* Download Section with Email Form */}
       <div id="download" className="bg-purple-700 py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -284,25 +341,106 @@ export default function AppLaunchPage() {
               Ready to Try {appName}?
             </h2>
             <p className="mt-4 text-lg text-black max-w-2xl mx-auto">
-              Download now and start experiencing the difference.
+              Enter your details to receive the download link via email.
             </p>
             
             <motion.div 
-              className="mt-12 inline-block"
+              className="mt-12 max-w-md mx-auto"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <motion.a
-                href={downloadLink}
-                className="px-10 py-4 rounded-full text-white bg-black text-lg font-medium flex items-center justify-center shadow-lg  transition-colors duration-300 "
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.5)" }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Download size={22} className="mr-2" />
-                Download {appName}
-              </motion.a>
+              {!formStatus.submitted ? (
+                <motion.form 
+                  ref={formRef}
+                  onSubmit={handleSubmit}
+                  className="bg-white shadow-lg rounded-lg p-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <div className="mb-4">
+                    <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
+                      Your Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      placeholder="John Doe"
+                      required
+                    />
+                  </div>
+                  
+                  <div className="mb-6">
+                    <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </div>
+                  
+                  {formStatus.error && (
+                    <div className="mb-4 text-red-500 text-sm">
+                      Error: {formStatus.error}
+                    </div>
+                  )}
+                  
+                  <motion.button
+                    type="submit"
+                    disabled={formStatus.submitting}
+                    className="w-full px-6 py-3 rounded-lg text-white bg-purple-700 font-medium flex items-center justify-center shadow-md hover:bg-purple-800 transition-colors duration-300 disabled:opacity-50"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {formStatus.submitting ? (
+                      <span>Sending...</span>
+                    ) : (
+                      <>
+                        <Send size={18} className="mr-2" />
+                        Send Download Link
+                      </>
+                    )}
+                  </motion.button>
+                </motion.form>
+              ) : (
+                <motion.div 
+                  className="bg-white shadow-lg rounded-lg p-6 text-center"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <h3 className="text-xl font-medium text-gray-900 mb-2">Thank You!</h3>
+                  <p className="text-gray-600 mb-4">
+                    We've sent the download link to your email.
+                  </p>
+                  <motion.a
+                    id="download-button"
+                    href={downloadLink}
+                    className="px-6 py-2 rounded-lg text-white bg-purple-700 font-medium inline-flex items-center justify-center shadow-md hover:bg-purple-800 transition-colors duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Download size={18} className="mr-2" />
+                    Download Now
+                  </motion.a>
+                </motion.div>
+              )}
             </motion.div>
             
             <motion.p 
@@ -330,3 +468,5 @@ export default function AppLaunchPage() {
     </div>
   );
 }
+
+
