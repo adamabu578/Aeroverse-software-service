@@ -8,9 +8,9 @@ import { Toaster } from "@/components/ui/sonner"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "banitechtoks Laptops & Mobile Accessories",
+  title: "smatpay app dowmload",
   description:
-    "Shop the latest laptops and mobile accessories at banitechtoks.",
+    "smatpay vtu app download ",
 }
 
 export default function RootLayout({
