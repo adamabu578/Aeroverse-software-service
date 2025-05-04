@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect, useRef } from "react"
 import type React from "react"
+import Image from "next/image"
 
 import { Download, ChevronRight, Menu, X, Send } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -316,6 +317,21 @@ export default function AppLaunchPage() {
                         {appName}
                       </motion.span>
                     </motion.div>
+                    {/* Add background image */}
+                    <motion.div
+                      className="absolute inset-0 z-0 opacity-30"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 0.3 }}
+                      transition={{ delay: 0.5, duration: 1 }}
+                    >
+                      <Image
+                        src="/assets/cartoon.png"
+                        alt="App launch background"
+                        width={320}
+                        height={320}
+                        className="w-full h-full object-cover rounded-3xl"
+                      />
+                    </motion.div>
                   </motion.div>
                 </div>
               </motion.div>
@@ -335,7 +351,9 @@ export default function AppLaunchPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold text-gray-900">Why Choose {appName}?</h2>
-            <p className="mt-4 text-xl text-gray-500 max-w-2xl mx-auto">Your top payment platform with reliable user-service experience</p>
+            <p className="mt-4 text-xl text-gray-500 max-w-2xl mx-auto">
+              Your top payment platform with reliable user-service experience
+            </p>
           </motion.div>
 
           <motion.div
@@ -514,4 +532,3 @@ export default function AppLaunchPage() {
     </div>
   )
 }
-
