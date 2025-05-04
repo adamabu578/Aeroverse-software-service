@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/sonner"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "smatpay app dowmload",
+  title: "smatpay app download",
   description:
     "smatpay vtu app download ",
 }
