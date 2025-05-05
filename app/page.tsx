@@ -137,7 +137,7 @@ export default function AppLaunchPage() {
                   Features
                 </motion.a>
                 <motion.a
-                  href="#download"
+                  href="https://downloads.smatpay.live/smatpay.apk"
                   className="text-gray-500 hover:text-blue-600 inline-flex items-center px-1 py-1 text-sm font-medium"
                   whileHover={{ scale: 1.05 }}
                 >
@@ -231,7 +231,7 @@ export default function AppLaunchPage() {
                 transition={{ delay: 0.8, duration: 0.8 }}
               >
                 <motion.a
-                  href={downloadLink}
+                  href="https://downloads.smatpay.live/smatpay.apk"
                   className="px-8 py-3 rounded-lg text-white bg-purple-700 font-medium flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
