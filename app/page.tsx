@@ -125,7 +125,8 @@ export default function AppLaunchPage() {
             >
               <div className="flex-shrink-0 flex items-center">
                 <motion.span className="text-purple-700 font-bold text-xl" whileHover={{ scale: 1.05 }}>
-                  {appName}
+                  {/* {appName} */}
+                  <img src={"/assets/smatpay.png"} alt="Logo" className="h-15 w-20 mr-2" />
                 </motion.span>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
