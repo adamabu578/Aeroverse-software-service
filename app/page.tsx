@@ -233,16 +233,19 @@ export default function AppLaunchPage() {
               >
                 <motion.a
                   href="https://downloads.smatpay.live/smatpay.apk"
-                  className="px-8 py-3 rounded-lg text-white bg-purple-700 font-medium flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors duration-300"
+                  // className="px-8 py-3 rounded-lg text-white font-medium flex items-center justify-center shadow-lg hover:bg-purple-700 transition-colors duration-300 w-[150px] h-[80px]"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Download size={20} className="mr-2" />
-                  Download Now
+                  {/* <Download size={20} className="mr-2" />
+                  Download Now */}
+                   <button className="">
+                   <img src={"/assets/Google.png"} className="lg:w-[150px] lg:h-[50px] shadow-md rounded-lg w-[150px] h-[50px] " />
+                  </button>
                 </motion.a>
                 <motion.a
                   href="#features"
-                  className="px-8 py-3 rounded-lg bg-white text-purple-700 font-medium flex items-center justify-center shadow-md hover:bg-gray-50 transition-colors duration-300"
+                  className="lg:w-[180px] lg:h-[50px] px-8 py-3 rounded-lg bg-white text-purple-700 font-medium flex items-center justify-center shadow-md hover:bg-gray-50 transition-colors duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
