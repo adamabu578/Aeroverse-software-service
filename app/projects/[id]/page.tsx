@@ -135,12 +135,12 @@ export function generateMetadata({ params }: PageProps): Metadata {
 
   if (!project) {
     return {
-      title: "Project Not Found",
+      title: "Aeroverse-sofwaredev",
     }
   }
 
   return {
-    title: `${project.title} | DevStudio Projects`,
+    title: `${project.title} | Aeroverse-sofwaredev`,
     description: project.description,
   }
 }

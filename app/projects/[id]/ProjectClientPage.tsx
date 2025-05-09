@@ -401,7 +401,7 @@ export default function ProjectClientPage({ params }: PageProps) {
             <Code className="h-5 w-5" />
             <span>DevStudio</span>
           </div>
-          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} DevStudio. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Aeroverse-softwaredev. All rights reserved.</p>
           <div className="flex gap-4">
             {["Privacy", "Terms", "Contact"].map((item, i) => (
               <motion.div
